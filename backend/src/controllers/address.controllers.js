@@ -11,11 +11,12 @@ import { user } from "./user.controllers.js";
 const AddAddress = asynchandler(async (req, res) => {
 
     const { addressLine1, fullName, addressLine2, city, state, country, postalCode, phoneNumber } = req.body;
+    console.log(res.body)
 
     const id = req.user._id;
 
     if ([addressLine1, addressLine2, city, state, country, postalCode, phoneNumber, fullName].some((item) =>
-        item.trim() === ""
+        item === ""
 
     )) {
         throw new ApiError(300, "All fields are required")
@@ -57,54 +58,31 @@ const sendAddress = asynchandler(async (req, res) => {
     res.status(200).json(new ApiResponse(200, address))
 })
 
-const updateAddress = asynchandler(async(req,res)=> {
-    console.log(req.body)
-    
+const updateAddress = asynchandler(async (req, res) => {
+    const { addressLine1, fullName, addressLine2, city, state, country, postalCode, phoneNumber } = req.body;
+    const id = req.user._id
+    if ([addressLine1, addressLine2, city, state, country, postalCode, phoneNumber, fullName].some((item) =>
+        item === ""
 
-    const { addressLine1, fullName, addressLine2, city, state, country, postalCode, phoneNumber,_id } = req.body;
-
-    const address = Address.findById(_id)
-    if(!address){
-        throw new ApiError("Address not found")
+    )) {
+        throw new ApiError(300, "All fields are required")
     }
-
-
-    if(addressLine1){
-        user.addressLine1 = addressLine1
+    const address = await Address.findOne({ user: id })
+    if (!address) {
+        throw new ApiError(300, "Adress not found")
     }
-    
-    if(fullName){
-        user.fullName = fullName
-    }
-    
-    if(addressLine1){
-        user.addressLine2 = addressLine2
-    }
-    
-    if(city){
-        user.city = city
-    }
-    
-    if(state){
-        user.state = state
-    }
-    
-    if(country){
-        user.country = country
-    }
-    
-    if(postalCode){
-        user.postalCode = postalCode
-    }
-    if(phoneNumber){
-        user.phoneNumber = phoneNumber
-    }
-
-  await  user.save()
-
-
-
-
+    const newaddress = await Address.findByIdAndUpdate(address._id, {
+        user: id,
+        addressLine1,
+        addressLine2,
+        city,
+        state,
+        postalCode,
+        phoneNumber,
+        country,
+        fullName
+    }, { new: true })
+    res.status(200).json(new ApiResponse(200, newaddress))
 })
 
 

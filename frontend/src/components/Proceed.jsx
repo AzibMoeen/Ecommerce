@@ -60,7 +60,7 @@ const Proceed = () => {
     <div>
         { Cart.length !== 0 && 
     <AlertDialog>
-      <AlertDialogTrigger><Button>Proceed</Button></AlertDialogTrigger>
+      <AlertDialogTrigger>Proceed</AlertDialogTrigger>
       <AlertDialogContent>
         <AlertDialogHeader>
           <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>

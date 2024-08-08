@@ -40,7 +40,7 @@ router.route('/sales').get(Sales)
 
 router.route('/addaddress').post(verifyJWT, AddAddress)
 router.route('/fetchadd').get(verifyJWT, sendAddress)
-router.route('/updateaddress').patch(verifyJWT, updateAddress)
+router.route('/updateaddress').put(verifyJWT, updateAddress)
 router.route('/search').get(searchProducts)
 
 

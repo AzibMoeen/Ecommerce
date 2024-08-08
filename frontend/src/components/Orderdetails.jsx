@@ -149,7 +149,7 @@ const fetchOrders = async () => {
                   Dashboard
                 </Link>
                 <Link
-                  to="#"
+                  to="orders"
                   className="flex items-center gap-4 px-2.5 text-foreground"
                 >
                   <ShoppingCart className="h-5 w-5" />
@@ -189,13 +189,11 @@ const fetchOrders = async () => {
               <BreadcrumbSeparator />
               <BreadcrumbItem>
                 <BreadcrumbLink asChild>
-                  <Link to="#">Orders</Link>
+                  <Link to="/orders">Orders</Link>
                 </BreadcrumbLink>
               </BreadcrumbItem>
-              <BreadcrumbSeparator />
-              <BreadcrumbItem>
-                <BreadcrumbPage>Recent Orders</BreadcrumbPage>
-              </BreadcrumbItem>
+        
+           
             </BreadcrumbList>
           </Breadcrumb>
           <div className="relative ml-auto flex-1 md:grow-0">

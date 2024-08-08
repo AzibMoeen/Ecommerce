@@ -67,7 +67,7 @@ const AllPendingOrders = asynchandler(async (req, res) => {
         throw new ApiError(400,"No orders found")
 
     }
-    res.status(200).json(new ApiResponse(200, allorders))
+    res.status(200).json(new ApiResponse(200, allorders))   
 })
 
 const MakeOrderShipped = asynchandler(async (req, res) => {
