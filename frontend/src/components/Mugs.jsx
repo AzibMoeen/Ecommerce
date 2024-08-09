@@ -1,13 +1,18 @@
 import React, { useEffect } from 'react';
 import { useAuth } from '../../utils/AuthContext';
 import { Link } from 'react-router-dom';
+import { useState } from 'react';
 
 const Mugs = () => {
   const { addToCart, fetchProducts, Products } = useAuth();
+  const [page, setPage] = useState("1");
 
   useEffect(() => {
-    fetchProducts(20, 1, 'Mugs');
+    fetchProducts(20, page, 'Mugs');
   }, [fetchProducts]);
+  const handleClick = (i) => {
+    setPage(i + 1);
+  };
 
   return (
     <div className="container mx-auto py-8 bg-gray-200 min-h-screen text-gray-900">
@@ -39,6 +44,18 @@ const Mugs = () => {
           ))}
         </div>
       </section>
+      
+      <div className="flex justify-center mt-4 space-x-2">
+        {Array.from({ length: 10 }).map((_, index) => (
+          <button
+            key={index}
+            onClick={() => handleClick(index)}
+            className={`px-4 py-2 rounded-md ${page === (index + 1) ? 'bg-blue-600 text-white' : 'bg-gray-300 text-gray-800 hover:bg-gray-400'}`}
+          >
+            {index + 1}
+          </button>
+        ))}
+      </div>
       
     </div>
   );

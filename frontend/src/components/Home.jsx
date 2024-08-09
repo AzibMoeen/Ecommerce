@@ -110,7 +110,7 @@ const Home = () => {
                   <h3 className="text-xl font-bold mb-2 text-gray-900">
                     <Link to={`/products/${product._id}`}>{product.name}</Link>
                   </h3>
-                  <p className="text-2xl font-bold text-gray-900">${product.price}</p>
+                  <p className="text-2xl font-bold text-gray-900">{product.price} RS</p>
                 </div>
                 <button onClick={() => addToCart(product)} className="mt-4 bg-white text-blue-600 hover:bg-blue-600 hover:text-white border border-blue-600 font-bold py-2 px-4 rounded-lg w-full">
                   Add to Cart
@@ -126,7 +126,7 @@ const Home = () => {
           <button
             key={index}
             onClick={() => handleClick(index)}
-            className={`px-4 py-2 rounded-md ${page === (index + 1).toString() ? 'bg-blue-600 text-white' : 'bg-gray-300 text-gray-800 hover:bg-gray-400'}`}
+            className={`px-4 py-2 rounded-md ${page === (index + 1) ? 'bg-blue-600 text-white' : 'bg-gray-300 text-gray-800 hover:bg-gray-400'}`}
           >
             {index + 1}
           </button>

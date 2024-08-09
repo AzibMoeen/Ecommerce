@@ -6,8 +6,6 @@ import { user } from "./user.controllers.js";
 
 
 
-
-
 const AddAddress = asynchandler(async (req, res) => {
 
     const { addressLine1, fullName, addressLine2, city, state, country, postalCode, phoneNumber } = req.body;

@@ -251,9 +251,7 @@ const fetchOrders = async () => {
                   <CardTitle className="text-4xl">{Sales} PKR</CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <div className="text-xs text-muted-foreground">
-                    +25% from last week
-                  </div>
+                 
                 </CardContent>
                 <CardFooter>
                   <Progress value={25} aria-label="25% increase" />
@@ -289,8 +287,7 @@ const fetchOrders = async () => {
                         size="sm"
                         className="h-7 gap-1 text-sm"
                       >
-                        <ListFilter className="h-3.5 w-3.5" />
-                        <span className="sr-only sm:not-sr-only">Filter</span>
+                       
                       </Button>
                     </DropdownMenuTrigger>
                     <DropdownMenuContent align="end">
