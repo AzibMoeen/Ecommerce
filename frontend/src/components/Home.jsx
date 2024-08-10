@@ -9,21 +9,55 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "./ui/carousel";
+import axios from "axios";
 import Autoplay from "embla-carousel-autoplay";
 
 const Home = () => {
+   const [Mug, setMug] = useState('')
+    const [Tshirt, setTshirt] = useState('')
+    const [Hoodie, setHoodie] = useState('')
   const [page, setPage] = useState("1");
   const navigate = useNavigate();
   const handleClick = (i) => {
     setPage(i + 1);
   };
   const { addToCart, fetchProducts, Products} = useAuth();
+  const fetchMug = async () => {
+    try {
+        const response = await axios.get('http://localhost:8000/api/v1/users/fetchFirstMug');
+        console.log(response.data);
+        setMug(response.data.data);
+    } catch (error) {
+        console.error('Error fetching data:', error);
+    }
+};
+  const fetchTshirt = async () => {
+    try {
+        const response = await axios.get('http://localhost:8000/api/v1/users/fetchFirstTshirt');
+        console.log(response.data);
+        setTshirt(response.data.data);
+    } catch (error) {
+        console.error('Error fetching data:', error);
+    }
+};
 
+const fetchHoodie = async () => {
+  try {
+      const response = await axios.get('http://localhost:8000/api/v1/users/fetchFirstHoodie');
+      console.log(response.data);
+      setHoodie(response.data.data);
+  } catch (error) {
+      console.error('Error fetching data:', error);
+  }
+};
   useEffect(() => {
+    fetchMug();
+    fetchTshirt();
+    fetchHoodie();
     fetchProducts(10, page);
-    navigate('/');
   }, [page,navigate]);
- 
+  
+
 
   return (
     <div className="container mx-auto py-8 bg-gray-100 min-h-screen text-gray-900">
@@ -72,7 +106,7 @@ const Home = () => {
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
           <div className="category-card bg-white shadow-lg rounded-lg overflow-hidden flex flex-col">
             <Link to="/tshirts">
-              <img src="/path/to/tshirt-image.jpg" alt="T-Shirts" className="w-full h-40 object-cover" />
+              <img src={Tshirt.image} alt="T-Shirts" className="w-full h-40 object-cover" />
             </Link>
             <div className="p-4 text-center">
               <h3 className="text-xl font-bold text-gray-900">T-Shirts</h3>
@@ -80,7 +114,7 @@ const Home = () => {
           </div>
           <div className="category-card bg-white shadow-lg rounded-lg overflow-hidden flex flex-col">
             <Link to="/mugs">
-              <img src="/path/to/mug-image.jpg" alt="Mugs" className="w-full h-40 object-cover" />
+              <img src={Mug.image} alt="Mugs" className="w-full h-40 object-cover" />
             </Link>
             <div className="p-4 text-center">
               <h3 className="text-xl font-bold text-gray-900">Mugs</h3>
@@ -88,7 +122,7 @@ const Home = () => {
           </div>
           <div className="category-card bg-white shadow-lg rounded-lg overflow-hidden flex flex-col">
             <Link to="/hoodies">
-              <img src="/path/to/hoodie-image.jpg" alt="Hoodies" className="w-full h-40 object-cover" />
+              <img src={Hoodie.image} alt="Hoodies" className="w-full h-40 object-cover" />
             </Link>
             <div className="p-4 text-center">
               <h3 className="text-xl font-bold text-gray-900">Hoodies</h3>

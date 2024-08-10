@@ -1,20 +1,18 @@
 import React, { useEffect } from "react"
 import { Link } from "react-router-dom"
 import {
-  ChevronLeft,
-  ChevronRight,
+ 
   Copy,
-  CreditCard,
+
   File,
   Home,
   LineChart,
-  ListFilter,
+
   MoreVertical,
   Package,
   Package2,
   PanelLeft,
-  Search,
-  Settings,
+  
   ShoppingCart,
   Truck,
   Users2,
@@ -47,12 +45,8 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
-import { Input } from "@/components/ui/input"
-import {
-  Pagination,
-  PaginationContent,
-  PaginationItem,
-} from "@/components/ui/pagination"
+
+
 import { Progress } from "@/components/ui/progress"
 import { Separator } from "@/components/ui/separator"
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
@@ -70,19 +64,16 @@ import {
   TabsList,
   TabsTrigger,
 } from "@/components/ui/tabs"
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipTrigger,
-  TooltipProvider,
-} from "@/components/ui/tooltip"
-
-
+import { toast  } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css'; 
+import { Bounce } from 'react-toastify';
   import axios from "axios"
 import AddProducts from "./AddProducts"
 import DashBoardNavbar from "./DashBoardNavbar"
 
+
 export function OrderDetails() {
+ 
     const [Details, setDetails] = useState('')
     const [Sales, setSales] = useState('')
     const handleClick = async(_id)=>{
@@ -119,6 +110,39 @@ const fetchOrders = async () => {
 
     }
   };
+  
+  const handleShip = async()=>{
+    const response = await axios.put(`http://localhost:8000/api/v1/users/MakeShipped/${Details._id}`)
+    console.log(response.data)
+    toast('Order has been Shipped', {
+      position: "top-right",
+      autoClose: 800,
+      hideProgressBar: true,
+      closeOnClick: true,
+      pauseOnHover: false,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+      type: "success",
+      transition: Bounce,
+      });
+  }
+  const handleDilever = async()=>{
+    const response = await axios.put(`http://localhost:8000/api/v1/users/MakeDilever/${Details._id}`)
+    console.log(response.data)
+    toast('Order has been Shipped', {
+      position: "top-right",
+      autoClose: 800,
+      hideProgressBar: true,
+      closeOnClick: true,
+      pauseOnHover: false,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+      type: "success",
+      transition: Bounce,
+      });
+  }
 
   return (
     <div className="flex min-h-screen w-full flex-col bg-muted/40">
@@ -196,38 +220,8 @@ const fetchOrders = async () => {
            
             </BreadcrumbList>
           </Breadcrumb>
-          <div className="relative ml-auto flex-1 md:grow-0">
-            <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
-            <Input
-              type="search"
-              placeholder="Search..."
-              className="w-full rounded-lg bg-background pl-8 md:w-[200px] lg:w-[320px]"
-            />
-          </div>
-          <DropdownMenu>
-            <DropdownMenuTrigger asChild>
-              <Button
-                variant="outline"
-                size="icon"
-                className="overflow-hidden rounded-full"
-              >
-                <img
-                  src="/placeholder-user.jpg"
-
-                  alt="Avatar"
-                  className="overflow-hidden rounded-full"
-                />
-              </Button>
-            </DropdownMenuTrigger>
-            <DropdownMenuContent align="end">
-              <DropdownMenuLabel>My Account</DropdownMenuLabel>
-              <DropdownMenuSeparator />
-              <DropdownMenuItem>Settings</DropdownMenuItem>
-              <DropdownMenuItem>Support</DropdownMenuItem>
-              <DropdownMenuSeparator />
-              <DropdownMenuItem>Logout</DropdownMenuItem>
-            </DropdownMenuContent>
-          </DropdownMenu>
+       
+         
         </header>
         <main className="grid flex-1 items-start gap-4 p-4 sm:px-6 sm:py-0 md:gap-8 lg:grid-cols-3 xl:grid-cols-3">
           <div className="grid auto-rows-max items-start gap-4 md:gap-8 lg:col-span-2">
@@ -475,6 +469,17 @@ const fetchOrders = async () => {
                     </div>
                   </dl>
                 </div>
+
+                <Separator className="my-4" />
+                {Details.status==="Pending"&& <div className="flex gap-7">
+              <Button onClick={handleShip} >Ship</Button>
+                 
+                 </div>}
+                 {Details.status==="Shipped"&& <div className="flex gap-7">
+                 <Button onClick={handleDilever}>Delivered</Button>
+                 </div>}
+                 
+              
                 </CardContent>
               
             </Card>}

@@ -84,7 +84,27 @@ const MakeOrderShipped = asynchandler(async (req, res) => {
     order.status = "Shipped"
 
     order.save({ validateBeforeSave: false })
+    console.log(order)
+    res.status(200).json(new ApiResponse(200, order))
 })
+const MakeOrderDelivered = asynchandler(async (req, res) => {
+
+    const _id = req.params
+    if (!_id) {
+        throw new ApiError(492)
+    }
+    const order = await Order.findById(_id)
+
+    if (!order) {
+        throw new ApiError(402)
+    }
+    order.status = "Delivered"
+
+    order.save({ validateBeforeSave: false })
+    console.log(order)
+    res.status(200).json(new ApiResponse(200, order))
+})
+
 
 const AllShippedOrders = asynchandler(async (req, res) => {
     const id = req.user._id
@@ -150,5 +170,5 @@ const Sales = asynchandler(async(req,res)=>{
 
 
 
-export { CancelOrder, createOrder, AllShippedOrders, MakeOrderShipped, AllPendingOrders, AllOrders,OrderByid ,Sales}
+export { CancelOrder, createOrder, AllShippedOrders, MakeOrderShipped, AllPendingOrders, AllOrders,OrderByid ,Sales ,MakeOrderDelivered}
 

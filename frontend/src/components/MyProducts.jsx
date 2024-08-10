@@ -65,6 +65,8 @@ import axios from "axios"
 
 
 export function MyProducts() {
+     const {user} = useAuth();
+     console.log(user)
     const {  fetchProducts,Products,setProducts} = useAuth();
     useEffect(() => {
     fetchProducts(10, 1);
@@ -172,7 +174,7 @@ export function MyProducts() {
                                 className="overflow-hidden rounded-full"
                             >
                                 <img
-                                    src="/placeholder-user.jpg"
+                                    src={user.avatar}
                                     alt="Avatar"
                                     className="overflow-hidden rounded-full"
                                 />
@@ -272,10 +274,10 @@ export function MyProducts() {
                                                 </TableCell>
                                                 <TableCell>{row.price}</TableCell>
                                                 <TableCell className="hidden md:table-cell">
-                                                    75
+                                                   0
                                                 </TableCell>
                                                 <TableCell className="hidden md:table-cell">
-                                                {new Date(row.createdAt).toLocaleString('en-US', { 
+                                                {new Date(row.updatedAt).toLocaleString('en-US', { 
     timeZone: 'Asia/karachi', 
     weekday: 'long', 
     year: 'numeric', 

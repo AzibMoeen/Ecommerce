@@ -158,7 +158,31 @@ const update = asynchandler(async(req,res)=>{
   return res.status(200).json(new ApiResponse(200,product))
 })
 
-export {addProduct,AllProductsofSeller,deleteproduct,fetchProducts,fetchproduct,update}
+
+const fetchMug = asynchandler(async(req,res)=>{
+
+  const Mug = await Product.findOne({Category:"Mugs"})
+
+
+return res.status(200).json(new ApiResponse(200,Mug))
+})
+const fetchHoodie = asynchandler(async(req,res)=>{
+
+  const Hoodie= await Product.findOne({Category:"Hoodies"})
+
+
+return res.status(200).json(new ApiResponse(200,Hoodie))
+})
+const fetchTshirt = asynchandler(async(req,res)=>{
+
+  const Tshirt = await Product.findOne({Category:"Tshirts"})
+
+
+return res.status(200).json(new ApiResponse(200,Tshirt))
+})
+
+
+export {addProduct,AllProductsofSeller,deleteproduct,fetchProducts,fetchproduct,update,fetchMug,fetchHoodie,fetchTshirt}
 
 
 
