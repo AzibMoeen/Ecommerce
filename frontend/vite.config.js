@@ -12,7 +12,7 @@ export default defineConfig({
   server: {
     proxy: {
       '/api/v1': {
-        target: 'http://localhost:8000',
+        target: 'https://orca-app-c6gyf.ondigitalocean.app/s',
         changeOrigin: true,
         rewrite: (path) => path.replace(/^\/api\/v1/, '/api/v1')
       }
