@@ -75,7 +75,7 @@ export function MyProducts() {
     const handleDelete = async (id) => {
            
       try {
-          const response = axios.delete(`http://localhost:8000/api/v1/users/delete/${id}` )
+          const response = axios.delete(`/api/v1/users/delete/${id}` )
           console.log(response)
           setProducts((prev) => prev.filter((item) => item._id !== id))
   

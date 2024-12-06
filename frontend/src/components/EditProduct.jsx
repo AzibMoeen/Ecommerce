@@ -72,7 +72,7 @@ export function EditProduct() {
     const [newProduct, setNewProduct] = useState({});
     const fetchProduct = async () => {
         try {
-          const response = await fetch(`http://localhost:8000/api/v1/users/fetch/${_id}`);
+          const response = await fetch(`/api/v1/users/fetch/${_id}`);
           const data = await response.json();
           console.log(data);
           setNewProduct(data.data);
@@ -86,7 +86,7 @@ export function EditProduct() {
    }, []);
    const handleUpdate = async () => {
     try {
-      const response = await fetch(`http://localhost:8000/api/v1/users/update/${_id}`, {
+      const response = await fetch(`/api/v1/users/update/${_id}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",

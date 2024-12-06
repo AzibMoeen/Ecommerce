@@ -31,7 +31,7 @@ const AddressFormDialog = () => {
     setLoading(true);
 
     try {
-      const response = await fetch('http://localhost:8000/api/v1/users/addaddress', {
+      const response = await fetch('/api/v1/users/addaddress', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

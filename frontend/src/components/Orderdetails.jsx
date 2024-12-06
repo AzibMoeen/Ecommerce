@@ -78,7 +78,7 @@ export function OrderDetails() {
     const [Sales, setSales] = useState('')
     const handleClick = async(_id)=>{
         console.log(_id)
-        const response = await axios.get(`http://localhost:8000/api/v1/users/orderbyid/${_id}`)
+        const response = await axios.get(`/api/v1/users/orderbyid/${_id}`)
         console.log(response.data.data)
         setDetails(response.data.data)
       
@@ -91,14 +91,14 @@ export function OrderDetails() {
      const accessToken = localStorage.getItem('accessToken');
     const [orders, setOrders] = useState([]);
     const sales = async() => {
-      const response = await axios.get('http://localhost:8000/api/v1/users/sales')
+      const response = await axios.get('/api/v1/users/sales')
       console.log(response.data.data)
       setSales(response.data.data[0].totalAmount)
     }
  
 const fetchOrders = async () => {
     try {
-      const response = await axios.get('http://localhost:8000/api/v1/users/orders', {
+      const response = await axios.get('/api/v1/users/orders', {
         headers: {
           'Authorization': `Bearer ${accessToken}`,
         },
@@ -112,7 +112,7 @@ const fetchOrders = async () => {
   };
   
   const handleShip = async()=>{
-    const response = await axios.put(`http://localhost:8000/api/v1/users/MakeShipped/${Details._id}`)
+    const response = await axios.put(`/api/v1/users/MakeShipped/${Details._id}`)
     console.log(response.data)
     toast('Order has been Shipped', {
       position: "top-right",
@@ -128,7 +128,7 @@ const fetchOrders = async () => {
       });
   }
   const handleDilever = async()=>{
-    const response = await axios.put(`http://localhost:8000/api/v1/users/MakeDilever/${Details._id}`)
+    const response = await axios.put(`/api/v1/users/MakeDilever/${Details._id}`)
     console.log(response.data)
     toast('Order has been Shipped', {
       position: "top-right",

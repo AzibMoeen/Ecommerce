@@ -22,38 +22,38 @@ const Home = () => {
     setPage(i + 1);
   };
   const { addToCart, fetchProducts, Products} = useAuth();
-  const fetchMug = async () => {
-    try {
-        const response = await axios.get('http://localhost:8000/api/v1/users/fetchFirstMug');
-        console.log(response.data);
-        setMug(response.data.data);
-    } catch (error) {
-        console.error('Error fetching data:', error);
-    }
-};
-  const fetchTshirt = async () => {
-    try {
-        const response = await axios.get('http://localhost:8000/api/v1/users/fetchFirstTshirt');
-        console.log(response.data);
-        setTshirt(response.data.data);
-    } catch (error) {
-        console.error('Error fetching data:', error);
-    }
-};
+//   const fetchMug = async () => {
+//     try {
+//         const response = await axios.get('/api/v1/users/fetchFirstMug');
+//         console.log(response.data);
+//         setMug(response.data.data);
+//     } catch (error) {
+//         console.error('Error fetching data:', error);
+//     }
+// };
+//   const fetchTshirt = async () => {
+//     try {
+//         const response = await axios.get('/api/v1/users/fetchFirstTshirt');
+//         console.log(response.data);
+//         setTshirt(response.data.data);
+//     } catch (error) {
+//         console.error('Error fetching data:', error);
+//     }
+// };
 
-const fetchHoodie = async () => {
-  try {
-      const response = await axios.get('http://localhost:8000/api/v1/users/fetchFirstHoodie');
-      console.log(response.data);
-      setHoodie(response.data.data);
-  } catch (error) {
-      console.error('Error fetching data:', error);
-  }
-};
+// const fetchHoodie = async () => {
+//   try {
+//       const response = await axios.get('/api/v1/users/fetchFirstHoodie');
+//       console.log(response.data);
+//       setHoodie(response.data.data);
+//   } catch (error) {
+//       console.error('Error fetching data:', error);
+//   }
+// };
   useEffect(() => {
-    fetchMug();
-    fetchTshirt();
-    fetchHoodie();
+    // fetchMug();
+    // fetchTshirt();
+    // fetchHoodie();
     fetchProducts(10, page);
   }, [page,navigate]);
   

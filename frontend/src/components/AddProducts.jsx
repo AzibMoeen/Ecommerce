@@ -52,7 +52,7 @@ const AddProducts = () => {
     formData.append('image', product.image);
 
     try {
-      const response = await fetch('http://localhost:8000/api/v1/users/add', {
+      const response = await fetch('/api/v1/users/add', {
         method: 'POST',
         headers: {
           'Authorization': `Bearer ${accessToken}`,

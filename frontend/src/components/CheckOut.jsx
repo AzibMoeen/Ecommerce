@@ -26,7 +26,7 @@ const CheckoutPage = () => {
   useEffect(() => {
     const extractAddressOfUser = async () => {
       try {
-        const response = await fetch('http://localhost:8000/api/v1/users/fetchadd', {
+        const response = await fetch('/api/v1/users/fetchadd', {
           method: 'GET',
           headers: {
             'Content-Type': 'application/json',
@@ -71,7 +71,7 @@ const CheckoutPage = () => {
     setLoading(true);
 
     try {
-      const response = await fetch('http://localhost:8000/api/v1/users/updateaddress', {
+      const response = await fetch('/api/v1/users/updateaddress', {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
@@ -97,7 +97,7 @@ const CheckoutPage = () => {
     setLoading(true);
 
     try {
-      const response = await fetch('http://localhost:8000/api/v1/users/addaddress', {
+      const response = await fetch('/api/v1/users/addaddress', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

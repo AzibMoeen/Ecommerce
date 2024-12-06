@@ -9,7 +9,7 @@ const Products = () => {
     const { _id } = useParams();
     const fetchProduct = async () => {
         try {
-          const response = await fetch(`http://localhost:8000/api/v1/users/fetch/${_id}`);
+          const response = await fetch(`/api/v1/users/fetch/${_id}`);
           const data = await response.json();
           console.log(data);
           setNewProduct(data.data);
@@ -31,7 +31,7 @@ const Products = () => {
                return
            }
         })  
-           const res = await fetch('http://localhost:8000/api/v1/users/createorder',{
+           const res = await fetch('/api/v1/users/createorder',{
                method:'POST',
                headers:{
                    'Content-Type':'application/json',

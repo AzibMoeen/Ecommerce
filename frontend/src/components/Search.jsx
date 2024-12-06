@@ -10,7 +10,7 @@ const SearchBar = () => {
 
   const handleSearch = async () => {
     try {
-      const response = await axios.get('http://localhost:8000/api/v1/users/search', {
+      const response = await axios.get('/api/v1/users/search', {
         params: { query: searchQuery }
       });
       setProducts(response.data);

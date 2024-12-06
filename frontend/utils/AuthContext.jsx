@@ -71,7 +71,7 @@ export const AuthProvider = ({ children }) => {
         e.preventDefault();
 
     try {
-      const response = await fetch('http://localhost:8000/api/v1/users/login', {
+      const response = await fetch('/api/v1/users/login', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -117,7 +117,7 @@ export const AuthProvider = ({ children }) => {
       formDataToSend.append('fullname', credentials.fullname);
       formDataToSend.append('password', credentials.password);
 
-      const response = await fetch('http://localhost:8000/api/v1/users/register', {
+      const response = await fetch('/api/v1/users/register', {
         method: 'POST',
         body: formDataToSend,
       });
@@ -137,7 +137,7 @@ export const AuthProvider = ({ children }) => {
 
     const fetchProducts = async (limit, page,Category) => {
       try {
-        const response = await axios.get('http://localhost:8000/api/v1/users/fetch', {
+        const response = await axios.get('/api/v1/users/fetch', {
           params: {
             limit,
             page,

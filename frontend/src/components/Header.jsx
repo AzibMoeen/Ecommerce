@@ -26,7 +26,7 @@ const Header = () => {
   };
 
   const handleLogout = async () => {
-    const response = await fetch('http://localhost:8000/api/v1/users/logout', {
+    const response = await fetch('/api/v1/users/logout', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

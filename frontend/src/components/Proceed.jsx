@@ -26,7 +26,7 @@ const Proceed = () => {
                return
            }
         })  
-           const res = await fetch('http://localhost:8000/api/v1/users/createorder',{
+           const res = await fetch('/api/v1/users/createorder',{
                method:'POST',
                headers:{
                    'Content-Type':'application/json',
